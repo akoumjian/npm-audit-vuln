@@ -1,0 +1,15 @@
+{
+  "name": "npm-audit-vuln",
+  "version": "1.0.0",
+  "description": "Hide vulnerabilities in npm audit",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "./replace.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alec Koumjian <akoumjian@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "cordova-plugin-inappbrowser": "^3.0.0"
+  }
+}
