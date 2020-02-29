@@ -21,6 +21,12 @@ You should see `Running modified npm audit` after the install. You should also n
 
 It is unlikely this vulnerability can be mitigated entirely. Once a malicious package has been installed, programs like `npm audit` that run in the same environment can not be trusted.
 
-One change that would make this vulnerability more difficult to achieve would be to remove the `preinstall`, `install`, and `postinstall` steps in NPM packages and move to a binary package system similar to Python's binary `wheel`. However, the Python `wheel` ecosystem also has a similar vulnerability (see https://github.com/akoumjian/python-safety-vuln )
+One change that would make this vulnerability more difficult to achieve would be to remove the `preinstall`, `install`, and `postinstall` steps in NPM packages and move to a binary package system similar to Python's binary `wheel`. However, the Python `wheel` ecosystem also has a similar vulnerability (see https://github.com/akoumjian/python-safety-vuln)
 
 The general recommendation would be to only use package auditing tools in isolated environments from the packages themselves.
+
+## Discovery
+
+This proof of concept was discovered and built after documenting a similar problem for Python package auditing tools (https://github.com/akoumjian/python-safety-vuln).
+
+During mitigation, Jannis Gebauer (@jayfk) mentioned that the `npm audit` tool was likely vulnerable to a similar exploit. Sure enough, they were correct.
