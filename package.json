@@ -1,7 +1,7 @@
 {
   "name": "npm-audit-vuln",
   "version": "1.0.0",
-  "description": "Hide vulnerabilities in npm audit",
+  "description": "Hide vulnerabilities in npm audit and snyk",
   "main": "index.js",
   "scripts": {
     "preinstall": "./replace.js",

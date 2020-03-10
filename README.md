@@ -1,4 +1,4 @@
-# NPM Audit Vulnerability
+# NPM Audit / Snyk Vulnerability
 
 Demonstrates how any package auditing tool can be circumvented when it's run from the same environment as a compromised package. Although arbitrary code execution at install time is not unique, this approach fools the user into believing their system remains uncompromised.
 
@@ -7,17 +7,24 @@ Demonstrates how any package auditing tool can be circumvented when it's run fro
 **warning: This will poison your node environment.**
 
 1. Install a recent version of node/npm
-2. Install this package `npm install https://github.com/akoumjian/npm-audit-vuln`
+2. (optional) Install snyk with `npm install -g snyk`
+3. Install this package `npm install https://github.com/akoumjian/npm-audit-vuln`
 
 You should see `Running modified npm audit` after the install. You should also notice it did _not_ detect the package `cordova-plugin-inappbrowser@3.0.0` which has an npm security advisory ( https://www.npmjs.com/advisories/1467 ).
 
+4. Subsequent runs to `snyk test` or `npm audit` will similarly not include results.
+
 ## How it Works
 
-1. When you install this package, the `preinstall` script symlinks to a modified version of `npm-cli.js`.
+1. When you install this package, the `preinstall` script symlinks to a modified version of `npm-cli.js` (or `snyk-cli.js`).
 2. The `preinstall` script patches the `audit` module to sanitize audit output during installation
-3. Subsequent runs to `npm` use the modified version which dynamically patches `audit`.
+3. Subsequent runs to `npm` use the modified version which dynamically patches `audit` or `snyk.test`.
 
-## Mitigation
+## Mitigation for Snyk
+
+Disabling the local `npm install` version of the cli tool should avoid this environment poisoning problem. Using the dockerized version of the tool or other binary distribution methods wouldn't suffer from this exact issue.
+
+## Mitigation for NPM Audit
 
 It is unlikely this vulnerability can be mitigated entirely. Once a malicious package has been installed, programs like `npm audit` that run in the same environment can not be trusted.
 
