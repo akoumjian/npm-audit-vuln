@@ -1,3 +1,5 @@
+See a detailed writeup at https://mulch.dev/blog/CVE-2020-5252-python-safety-vuln/
+
 # NPM Audit / Snyk Vulnerability
 
 Demonstrates how any package auditing tool can be circumvented when it's run from the same environment as a compromised package. Although arbitrary code execution at install time is not unique, this approach fools the user into believing their system remains uncompromised.
