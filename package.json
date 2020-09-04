@@ -10,6 +10,6 @@
   "author": "Alec Koumjian <akoumjian@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "cordova-plugin-inappbrowser": "^3.0.0"
+    "cordova-plugin-inappbrowser": "^3.1.0"
   }
 }
